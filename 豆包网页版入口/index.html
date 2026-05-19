@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="zh-CN" dir="ltr">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>豆包网页版入口 – 字节跳动旗下 AI 智能助手</title>
+    <meta name="description" content="字节跳动旗下的豆包AI智能助手不仅能进行日常对话和文案写作，还能深入进行学术研究、一键生成可视化报告，甚至让毫无编程基础的用户也能轻松创建网页应用。">
+    <meta name="keywords" content="豆包AI,字节跳动AI,AI对话助手,智能对话机器人,云雀大模型,AI写作助手,AI学习助手,AI编程助手,免费AI工具">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="豆包">
+    <meta property="og:description" content="字节跳动旗下的豆包AI智能助手不仅能进行日常对话和文案写作，还能深入进行学术研究、一键生成可视化报告，甚至让毫无编程基础的用户也能轻松创建网页应用。">
+    <meta property="og:type" content="website">
+    <link rel="shortcut icon" href="./doubao.png">
+    <style>
+                * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        .header {
+            background: #fff;
+            border-bottom: 1px solid #eee;
+            padding: 15px 0;
+            text-align: center;
+        }
+
+        .logo {
+            height: 50px;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: #fff;
+            border-radius: 15px;
+            padding: 40px;
+            margin: 40px auto;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .hero-content {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .hero-text {
+            flex: 1;
+        }
+
+        /* 产品名称和logo样式 */
+        .product-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .product-logo {
+            width: 75px;
+            height: 75px;
+            border-radius: 100px;
+            object-fit: cover;
+            border: 1px solid #e9ecef;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            flex-shrink: 0;
+        }
+
+        .product-name {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #333;
+            margin: 0;
+        }
+
+        .product-name span {
+            color: #4169E1;
+            position: relative;
+        }
+
+        .product-name span::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, #4169E1, #6495ED);
+            border-radius: 2px;
+        }
+
+        .product-description {
+            font-size: 1.3rem;
+            color: #666;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 20px;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 1.5rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(90deg, #4169E1, #6495ED);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #3654c4;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(65, 105, 225, 0.3);
+        }
+
+        .btn-secondary {
+            background: #4169E1;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #3654c4;
+            transform: translateY(-2px);
+        }
+
+        .btn-download {
+            background: #111111;
+            color: white;
+        }
+
+        .btn-download:hover {
+            background: #333333;
+            transform: translateY(-2px);
+        }
+
+        .btn-info {
+            background: #17a2b8;
+            color: white;
+        }
+
+        .btn-info:hover {
+            background: #117a8b;
+            transform: translateY(-2px);
+        }
+
+        .hero-image {
+            flex-shrink: 0;
+        }
+
+        .screenshot {
+            width: 400px;
+            height: 300px;
+            border-radius: 15px;
+            border: 1px solid #eee;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            object-fit: cover;
+        }
+
+        /* 内容区域布局 */
+        .main-wrapper {
+            display: flex;
+            gap: 40px;
+            align-items: flex-start;
+        }
+
+        .main-content {
+            flex: 1;
+            background: #fff;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 30px 0;
+            text-align: center;
+            color: #333;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, #4169E1, #6495ED);
+            border-radius: 2px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .feature-card {
+            padding: 25px;
+            border: 1px solid #e9ecef;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            background: #fafafa;
+        }
+
+        .feature-card:hover {
+            border-color: #4169E1;
+            box-shadow: 0 4px 15px rgba(65, 105, 225, 0.1);
+            transform: translateY(-2px);
+            background: #fff;
+        }
+
+        .feature-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .feature-icon {
+            font-size: 20px;
+        }
+
+        .feature-text {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        /* 新增：功能介绍详细部分 */
+        .detailed-features {
+            margin-top: 40px;
+        }
+
+        .detailed-section {
+            margin-bottom: 40px;
+        }
+
+        .detailed-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e9ecef;
+            color: #333;
+        }
+
+        .detailed-content {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            line-height: 1.7;
+        }
+
+        .detailed-content p {
+            margin-bottom: 15px;
+        }
+
+        .detailed-content strong {
+            color: #4169E1;
+        }
+
+        .doubao-content {
+            margin-top: 50px;
+            padding: 30px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            border-left: 4px solid #4169E1;
+        }
+
+        .doubao-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #333;
+            text-align: center;
+        }
+
+        .doubao-text {
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 15px;
+        }
+
+        .doubao-keywords {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .keyword-tag {
+            background: #e9ecef;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: #555;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 280px;
+            background: #fff;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e9ecef;
+        }
+
+        .sidebar h3 {
+            color: #4169E1;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 1.2rem;
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        .ai-tool {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            background: #f8f9fa;
+            color: #333;
+            text-decoration: none;
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
+            transition: all 0.3s ease;
+        }
+
+        .ai-tool:hover {
+            background: #4169E1;
+            color: white;
+            transform: translateX(5px);
+            box-shadow: 0 2px 8px rgba(65, 105, 225, 0.2);
+        }
+
+        .tool-logo {
+            width: 28px;
+            height: 28px;
+            border-radius: 6px;
+            object-fit: cover;
+            border: 1px solid #ddd;
+            background: #fff;
+            flex-shrink: 0;
+        }
+
+        .tool-name {
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: #ffffff;
+            border-top: 1px solid #dee2e6;
+            padding: 30px 0;
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .copyright {
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 15px;
+            }
+
+            .hero {
+                margin: 20px 15px;
+                padding: 30px 20px;
+            }
+
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .product-header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+
+            .product-logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .product-name {
+                font-size: 2.5rem;
+            }
+
+            .screenshot {
+                width: 100%;
+                max-width: 400px;
+            }
+
+            .main-wrapper {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .sidebar {
+                width: 100%;
+                order: -1;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .buttons {
+                justify-content: center;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 250px;
+                text-align: center;
+            }
+            
+            .doubao-content {
+                padding: 20px;
+            }
+        }
+        
+        /* 新增：豆包特色标签 */
+        .doubao-tag {
+            display: inline-block;
+            background: linear-gradient(90deg, #4169E1, #6495ED);
+            color: white;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-left: 10px;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <img src="./logo.png" alt="LOGO" class="logo">
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero container">
+        <div class="hero-content">
+            <div class="hero-text">
+                <div class="product-header">
+                    <img src="./doubao.png" alt="豆包" class="product-logo">
+                    <h1 class="product-name">豆包</h1>
+                </div>
+                
+                <p class="product-description">豆包AI助手是字节跳动公司推出的智能对话助手，基于先进的云雀大模型技术。无论是日常对话、学习辅导、工作协助，还是创意写作、代码编程、图像生成，豆包都能提供专业、高效的AI智能服务，成为用户生活中不可或缺的智能伙伴。</p>
+                
+                <div class="buttons">
+                    <a href="https://dis.csqixiang.cn/unpo/dbszzn.html" target="_blank" class="btn btn-secondary">豆包网页版官网入口</a>
+                    <a href="https://ugapk.com/djEGt" target="_blank" class="btn btn-download">下载豆包电脑版</a>
+                </div>
+                
+            </div>
+            
+            <div class="hero-image">
+                <img src="./doubao.webp" alt="豆包网页版" class="screenshot">
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content Area -->
+    <div class="container">
+        <div class="main-wrapper">
+            <!-- 主要内容 -->
+            <main class="main-content">
+                
+                 <div class="feature-card">
+                    <h2 class="doubao-title">豆包 - 字节跳动旗下 AI 智能助手</h2>
+                    <p class="doubao-text">豆包AI是由字节跳动公司开发的智能对话AI工具，基于先进的云雀大模型技术，为用户提供免费、高质量的AI对话服务。作为国内领先的AI助手，豆包在中文自然语言处理、多轮对话理解和本土化知识方面具有显著优势。</p>
+                    <p class="doubao-text">豆包支持多种功能，包括智能对话、写作辅助、学习辅导、代码编程、图像生成等，能够满足不同用户群体的多样化需求。无论是学生、职场人士、创作者还是技术人员，都能在豆包中找到实用的AI功能。</p>
+                    <p class="doubao-text">与其他AI工具相比，豆包的最大优势在于完全免费，无限制使用，降低了用户的使用门槛。同时，豆包提供多平台支持，包括Web网页版、移动APP和电脑版，用户可以随时随地享受AI服务。</p>
+                    <p class="doubao-text">随着人工智能技术的不断发展，豆包AI助手将持续更新和优化，为用户提供更智能、更便捷的AI服务体验。作为字节跳动在AI领域的重要布局，豆包将继续推动AI技术的普及和应用，让更多人享受到人工智能带来的便利。</p>
+                    
+                </div>
+                
+                
+                <h3 class="section-title">豆包AI核心功能特色</h3>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h3 class="feature-title">
+                            <span class="feature-icon">💬</span>
+                            智能对话交流
+                        </h3>
+                        <p class="feature-text">基于字节跳动自研的云雀大模型，豆包能够进行自然流畅的中英文对话，理解上下文，提供准确、有用的回答。支持多种话题，从日常生活到专业知识，豆包都能成为您的贴心助手。</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h3 class="feature-title">
+                            <span class="feature-icon">✍️</span>
+                            智能写作助手
+                        </h3>
+                        <p class="feature-text">无论是文章写作、邮件撰写、方案策划，还是创意故事、诗歌创作，豆包都能提供高质量的写作辅助。支持多种文体和风格，帮助您提升写作效率和质量。</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h3 class="feature-title">
+                            <span class="feature-icon">📚</span>
+                            学习辅导导师
+                        </h3>
+                        <p class="feature-text">豆包能够解答各学科问题，提供知识点讲解、解题思路、学习计划制定等服务。无论是学生课后辅导，还是成人继续教育，豆包都能提供个性化的学习支持。</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h3 class="feature-title">
+                            <span class="feature-icon">💻</span>
+                            代码编程助手
+                        </h3>
+                        <p class="feature-text">支持Python、Java、JavaScript、C++等多种编程语言的代码生成、解释、调试和优化。无论是编程学习、项目开发还是技术问题解答，豆包都能提供专业的编程支持。</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h3 class="feature-title">
+                            <span class="feature-icon">🎨</span>
+                            创意图像生成
+                        </h3>
+                        <p class="feature-text">集成先进的AI绘画功能，能够根据文字描述生成高质量的图像作品。支持多种艺术风格，满足创意设计、插画创作、内容配图等多种需求。</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h3 class="feature-title">
+                            <span class="feature-icon">🌍</span>
+                            多场景工作助手
+                        </h3>
+                        <p class="feature-text">豆包能够胜任多种工作场景，包括翻译、总结、数据分析、方案策划、会议纪要等。无论是办公文员、市场人员还是管理人员，豆包都能提升工作效率。</p>
+                    </div>
+                </div>
+                
+                <div class="detailed-features">
+                    <div class="feature-card detailed-section">
+                        <h3 class="detailed-title">豆包AI的核心优势<span class="doubao-tag">独家特色</span></h3>
+                        <div class="detailed-content">
+                            <p><strong>技术实力雄厚：</strong>豆包基于字节跳动自研的云雀大模型，拥有千亿级参数，在中文理解、多轮对话、知识问答等多个评测维度表现优异，技术实力处于国内领先水平。</p>
+                            <p><strong>完全免费使用：</strong>与许多国外AI工具不同，豆包目前完全免费向用户开放，无需付费订阅即可享受高质量的AI服务，大大降低了用户使用门槛。</p>
+                            <p><strong>中文优化最佳：</strong>作为国产AI助手，豆包在中文语言理解、文化背景把握、本土化知识方面具有天然优势，能够更好地理解中文用户的表达习惯和需求。</p>
+                            <p><strong>多平台支持：</strong>豆包提供Web网页版、移动APP、桌面客户端等多种使用方式，支持iOS、Android、Windows、macOS等主流操作系统，随时随地可用。</p>
+                        </div>
+                    </div>
+                    
+                    <div class="feature-card detailed-section">
+                        <h3 class="detailed-title">豆包AI应用场景<span class="doubao-tag">实用指南</span></h3>
+                        <div class="detailed-content">
+                            <p><strong>教育学习场景：</strong>学生可以使用豆包进行作业辅导、知识点查询、学习计划制定；教师可以使用豆包准备教案、出题、批改作业建议等。</p>
+                            <p><strong>工作办公场景：</strong>职场人士可以利用豆包撰写工作报告、制作PPT大纲、整理会议纪要、进行数据分析和可视化建议等，大幅提升工作效率。</p>
+                            <p><strong>创意创作场景：</strong>作家、设计师、策划人员可以使用豆包进行头脑风暴、创意写作、方案策划、设计思路拓展等，激发创作灵感。</p>
+                            <p><strong>编程开发场景：</strong>程序员可以使用豆包生成代码片段、解释复杂代码、调试错误、学习新技术框架，提高开发效率和学习效果。</p>
+                            <p><strong>日常生活场景：</strong>普通用户可以使用豆包进行日常问答、旅游规划、健康咨询、娱乐聊天、故事创作等，丰富生活体验。</p>
+                        </div>
+                    </div>
+
+                                    <div class="feature-card detailed-section">
+                    <h3 class="detailed-title">豆包AI的技术架构与创新<span class="doubao-tag">技术解析</span></h3>
+                    <div class="detailed-content">
+                        <p><strong>云雀大模型架构：</strong>豆包基于字节跳动自研的云雀大模型，采用先进的Transformer架构，拥有千亿级参数。该模型在预训练阶段融合了海量高质量中英文语料，具备强大的语言理解和生成能力。</p>
+                        <p><strong>多模态技术集成：</strong>豆包不仅支持文本对话，还集成了图像生成、语音交互等多模态能力。其图像生成功能基于先进的扩散模型，能够根据复杂描述生成高质量图片。</p>
+                        <p><strong>上下文长度优化：</strong>豆包支持长达128K的上下文长度，能够处理长文档对话，保持多轮对话的一致性。通过高效的注意力机制优化，在处理长文本时仍能保持响应速度。</p>
+                        <p><strong>实时信息检索：</strong>豆包集成了实时搜索功能，能够获取最新信息，确保回答的时效性和准确性。结合知识库检索技术，避免知识过时问题。</p>
+                        <p><strong>安全与合规设计：</strong>豆包在模型训练和产品设计中严格遵循安全准则，建立了完善的内容过滤和审查机制。采用对齐技术确保生成内容符合法律法规和社会主义核心价值观。</p>
+                        <p><strong>推理性能优化：</strong>通过模型量化、剪枝和蒸馏技术，豆包在保持模型性能的同时大幅降低了推理成本。支持高并发场景，能够服务海量用户同时使用。</p>
+                    </div>
+                </div>
+                
+               </div>
+            </main>
+
+
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p class="copyright">© kouziai.github.io/豆包</p>
+
+        </div>
+    </footer>
+</body>
+</html>
